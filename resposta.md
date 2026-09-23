@@ -29,6 +29,8 @@ Os arquivos locais da pasta `raw/` são transmitidos para um bucket central do *
 ### 2. Pipeline de Processamento Orquestrado (AWS Step Functions)
 Todo o fluxo de ingestão, tomada de decisão baseada no tipo de arquivo e tratamento de falhas é governado pelo **AWS Step Functions**. O upload de um arquivo gera um evento que inicia a máquina de estados:
 
+[Arquivo Ingerido no S3]│▼[AWS Step Functions] ── (Identifica Extensão e Formato)│├──► Se .png ──────────────► [Amazon Textract] ──────────────┐│                                                            ▼├──► Se .pdf (Texto) ──────► [AWS Lambda (Direct Parse)] ──► [Texto Bruto Normalizado]│                                                            ▲└──► Se .csv (Tabular) ────► [AWS Glue Crawler & Catalog] ───┘
+
 *   **Identificação do OCR:** Uma função **AWS Lambda** de triagem analisa os metadados do arquivo. Se a extensão for `.png`, o fluxo o classifica como documento que necessita de OCR.
 *   **Tratamento do PNG (Amazon Textract):** O Step Functions envia o arquivo `.png` para o **Amazon Textract**. O Textract analisa a imagem e extrai o texto bruto contido nas linhas, blocos e possíveis tabelas desenhadas.
 *   **Tratamento do PDF Nativo:** O arquivo `.pdf` é direcionado para uma função **AWS Lambda** dedicada que utiliza bibliotecas de extração direta de texto (como PyPDF ou PDFMiner). O texto é extraído de forma rápida e barata, sem consumir recursos de OCR do Textract.
