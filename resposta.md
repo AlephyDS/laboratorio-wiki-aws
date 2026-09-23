@@ -3,8 +3,8 @@ Transformação de documentos em uma base de conhecimento pesquisável usando se
 O projeto tem como objetivo transformar arquivos espalhados, como PDFs, imagens e planilhas, em
 uma base de conhecimento organizada e pesquisável. A ideia final é permitir que uma pessoa faça
 perguntas em linguagem natural e receba respostas baseadas nos documentos da empresa.
-Fluxo conceitual: Arquivos ® armazenamento ® processamento ® extração e organização ® busca
-semântica ® inteligência artificial ® resposta com referências.
+Fluxo conceitual: Arquivos - armazenamento - processamento - extração e organização - busca
+semântica - inteligência artificial - resposta com referências.
 2. Amazon S3 — armazenamento
 O Amazon S3 é o armazenamento principal dos arquivos. Os documentos originais devem ser
 preservados, enquanto os resultados processados podem ser armazenados separadamente. Essa
@@ -15,8 +15,8 @@ os documentos; failed = registros de processamento que apresentaram erro.
 O AWS Step Functions funciona como um orquestrador. Ele controla a sequência das etapas,
 permitindo definir decisões, condições, tentativas novamente e tratamento de falhas. Em vez de cada
 serviço trabalhar isoladamente, o Step Functions coordena o fluxo.
-Exemplo conceitual: receber arquivo ® identificar formato ® escolher processamento ® extrair
-conteúdo ® limpar ® gerar metadados ® indexar.
+Exemplo conceitual: receber arquivo - identificar formato - escolher processamento - extrair
+conteúdo - limpar - gerar metadados - indexar.
 4. Amazon Textract — OCR e extração
 O Amazon Textract é utilizado para extrair informações de documentos, principalmente quando o
 conteúdo está em imagens ou documentos digitalizados. Um PDF que já possui uma camada de texto
@@ -93,8 +93,8 @@ Recuperação dos trechos relevantes
 Amazon Bedrock
 ¯
 Resposta baseada nos documentos + referências
-Paralelamente, o fluxo de ingestão pode seguir: S3 ® Step Functions ® Lambda/Textract/Glue ®
-normalização e metadados ® embeddings ® armazenamento vetorial.
+Paralelamente, o fluxo de ingestão pode seguir: S3 - Step Functions - Lambda/Textract/Glue -
+normalização e metadados - embeddings - armazenamento vetorial.
 16. O que acontece quando o usuário faz uma pergunta?
 1. O usuário envia uma pergunta.
 2. A pergunta é analisada e transformada para permitir a busca.
